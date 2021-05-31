@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParse = require("body-parser");
+const methodOverride = require("method-override");
 const app = express();
 const indexRouter = require("./routes/index");
 //author rout
@@ -16,6 +17,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
 app.use(expressLayouts);
+app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(bodyParse.urlencoded({ limit: "10mb", extended: false }));
 
